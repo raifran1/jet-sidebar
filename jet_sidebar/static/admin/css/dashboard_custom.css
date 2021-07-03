@@ -1,0 +1,63 @@
+a:not([href]):not([tabindex]) {
+    color: #c0cad8;
+    text-decoration: none;
+}
+
+a:not([href]):not([tabindex]):hover {
+    color: #c0cad8;
+    text-decoration: none;
+}
+
+a:-webkit-any-link {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+ul > li > .header-menu {
+  margin-bottom: -4px!important;
+}
+
+.sidebar-wrapper .sidebar-menu .sidebar-dropdown > a:after {
+  right: -2px!important;
+  top: 13px!important;
+}
+
+#content {
+    padding: 0.92857rem 1.42857rem !important;
+}
+
+h5 {
+    text-transform: inherit;
+}
+
+a, a:visited, a:hover, a:focus{
+    color: #6f7e95;
+    text-decoration: none;
+}
+
+body {
+    color: #6f7e95;
+    font-family: Arial,sans-serif;
+}
+
+.dashboard #content {max-width: 100% !important;}
+#content-related {width: 100%;}
+#content-related .module {margin: 0 !important;}
+
+@media (max-width: 990px) {
+    #content {padding: 1.42857rem 1.42857rem !important}
+}
+
+.paginator {
+    display: inherit;
+    line-height: normal;
+    padding: 0 !important;
+    margin: 0;
+    font-size: 0.85714rem;
+}
+
+.paginator .pages-wrapper span, .paginator .pages-wrapper a {
+    font-size: 14px;
+    padding: 3px 5px;
+    display: inline-block;
+}

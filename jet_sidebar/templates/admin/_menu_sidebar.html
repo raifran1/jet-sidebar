@@ -1,0 +1,22 @@
+{% load jet_rebuild_tags %}
+
+{% if app_menu %}
+    <li class="sidebar-dropdown">
+        <a href="#" title="{{ app_menu.label }}">
+            <i class="{{ class_icon }}"></i> <span>{{ app_menu.label }}</span>
+        </a>
+        <div class="sidebar-submenu">
+            <ul>
+                {% for model in app_menu.items %}
+                {% if model.has_perms %}
+                    <li>
+                        <a{% if model.url %} href="{{ model.url }}"{% endif %} {% if model.url_blank %} target="_blank"{% endif %}>
+                        {{ model.label }}
+                        </a>
+                    </li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    </li>
+{% endif %}

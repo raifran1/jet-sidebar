@@ -1,0 +1,38 @@
+.charsleft > small {
+    vertical-align: middle;
+    margin-left: 0.5em;
+    color: #000;
+    line-height: 23px;
+}
+
+.charsleft .maxlength {
+    display: none;
+}
+
+.charsleft small .orange {
+    color: orange !important;
+}
+
+.charsleft small .red {
+    color: red !important;
+}
+
+
+/*CUSTOMIZATION*/
+.charsleft {display: flex; align-items: stretch;}
+.charsleft input[type="text"] {max-width: 700px;/*max-width: 600px;*/ flex: 1 1 auto; border-radius: 4px 0 0 4px;}
+.charsleft .counter {display: inline-block; font-size: 0.92857rem; background: #ecf2f6; padding: 6px 10px; border: 1px solid #ccc; border-left: 0; border-radius: 0 4px 4px 0;}
+
+
+@media (max-width: 768px) {
+
+   .charsleft .counter {padding: 10px 10px 1.3px;}
+
+}
+@media (max-width: 425px) {
+
+   .charsleft input[type="text"] {flex: none;}
+
+   .django-ckeditor-widget {width: 352px;}
+
+}
