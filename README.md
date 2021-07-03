@@ -27,16 +27,11 @@ o django jet antes de prosseguir
 
 ***
 
-* **Clone o repositório desse aplicativo dentro da pasta de aplicativos do seu projeto**
+* **Instale a ultima versão do jet-sidebar**
 
 `No seu Terminal(shell) - SSH:`
 ```
-git clone git@github.com:raifran1/django-jet-sidebar.git
-```
-
-`No seu Terminal(shell) - HTTPS:`
-```
-git clone https://github.com/raifran1/django-jet-sidebar.git
+pip install jet-sidebar
 ```
 
 ***
