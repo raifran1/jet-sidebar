@@ -1,0 +1,7 @@
+include LICENSE
+include README.md
+recursive-include jet_sidebar/templates *
+recursive-include jet_sidebar/templatetags *
+recursive-include jet_sidebar/static *
+recursive-include jet_sidebar/locale *
+
