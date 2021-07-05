@@ -16,9 +16,11 @@ def check_permission(user, permissions):
     """
     This function run the check permissions the authenticated user for list menu options
     """
+
     if user.is_superuser:
         has_perm = True
     else:
+        has_perm = False
         user_groups = []
 
         if type(permissions) != list:
@@ -39,6 +41,7 @@ def check_permission(user, permissions):
                 break
             else:
                 has_perm = False
+
     return has_perm
 
 @register.simple_tag()
