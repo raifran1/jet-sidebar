@@ -11,38 +11,39 @@ from django.utils.translation import gettext as _, gettext_lazy
 
 register = template.Library()
 
-@register.filter()
-def check_permission(user, permissions):
-    """
-    This function run the check permissions the authenticated user for list menu options
-    """
-
-    if user.is_superuser:
-        has_perm = True
-    else:
-        has_perm = False
-        user_groups = []
-
-        if type(permissions) != list:
-            permissions = permissions.split(', ')
-
-        groups_user = user.groups.all()
-        for group in groups_user:
-            user_perms = list(group.permissions.values_list('codename', flat=True).all())
-            for perm in user_perms:
-                user_groups.append(perm)
-        user_perms = list(user.user_permissions.values_list('codename', flat=True).all())
-
-        user_all_perms = list(sorted(chain(user_perms, user_groups)))
-
-        for perms in permissions:
-            if str(perms) in user_all_perms:
-                has_perm = True
-                break
-            else:
-                has_perm = False
-
-    return has_perm
+# @register.filter()
+# def check_permission(user, permissions):
+#     """
+#     This function run the check permissions the authenticated user for list menu options
+#     """
+#
+#     if user.is_superuser:
+#         has_perm = True
+#     else:
+#         user_groups = []
+#
+#         if type(permissions) != list:
+#             permissions = permissions.split(', ')
+#
+#         groups_user = user.groups.all()
+#         for group in groups_user:
+#             user_perms = list(group.permissions.values_list('codename', flat=True).all())
+#             for perm in user_perms:
+#                 user_groups.append(perm)
+#         user_perms = list(user.user_permissions.values_list('codename', flat=True).all())
+#
+#         user_all_perms = list(sorted(chain(user_perms, user_groups)))
+#         if permissions:
+#             for perms in permissions:
+#                 if str(perms) in user_all_perms:
+#                     has_perm = True
+#                     break
+#                 else:
+#                     has_perm = False
+#         else:
+#             has_perm = False
+#
+#     return has_perm
 
 @register.simple_tag()
 def profile_id(request):
@@ -75,16 +76,23 @@ def menu_sidbar(user, app):
     if not class_icon:
         class_icon = 'fas fa-exclamation-circle'
     models = ContentType.objects.filter(app_label=app['app_label']).values_list('model', flat=True)
-    permissions = []
-    for model in models:
-        permission_view = 'view_' + model
-        permission_add = 'add_' + model
-        permissions.append(permission_view)
-        permissions.append(permission_add)
-    app_menu = False
+    # permissions = []
+    # for model in models:
+    #     permission_view = 'view_' + model
+    #     permission_add = 'add_' + model
+    #     permissions.append(permission_view)
+    #     permissions.append(permission_add)
+    # app_menu = False
+    #
+    # if check_permission(user, permissions):
+    #     app_menu = app
 
-    if check_permission(user, permissions):
-        app_menu = app
+    for a in app['items']:
+        if a['has_perms']:
+            app_menu = app
+            break
+        else:
+            app_menu = False
 
     context = {
         'app_menu': app_menu,

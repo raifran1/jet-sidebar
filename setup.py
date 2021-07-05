@@ -9,7 +9,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="jet-sidebar",
-    version="0.0.9",
+    version="0.1.1",
     author="Raifran Lucas",
     author_email="contato@raifranlucas.dev",
     description="Este pacote é uma modificação para o Django Jet",
