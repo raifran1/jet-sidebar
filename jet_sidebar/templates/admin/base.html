@@ -226,9 +226,8 @@
 
             <!-- sidebar-content  -->
             <div class="sidebar-footer">
-              {# url_account user_id=request.user.id as url_ #}
-              {# admin:auth_user_change #}
-              <a href="{% url 'admin:auth_user_change' request.user.id %}" title="{% trans 'My Account' %}">
+              {% url_account as url_ %}
+              <a href="{% if url_ %}{% url url_ request.user.id %}{% endif %}" title="{% trans 'My Account' %}">
                   <span>{% trans 'My Account' %}</span> <i class="fa fa-cog"></i>
               </a>
               <a href="/admin/logout/" title="{% trans 'Logout' %}">

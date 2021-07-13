@@ -9,7 +9,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="jet-sidebar",
-    version="0.1.1",
+    version="0.2.0",
     author="Raifran Lucas",
     author_email="contato@raifranlucas.dev",
     description="Este pacote é uma modificação para o Django Jet",
@@ -23,7 +23,7 @@ setup(
         "Framework :: Django",
         "Programming Language :: Python :: 2.6",
         "Programming Language :: Python :: 2.7",
-        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.7",
         "License :: OSI Approved :: MIT License",
         "Environment :: Web Environment",
         "Operating System :: OS Independent",

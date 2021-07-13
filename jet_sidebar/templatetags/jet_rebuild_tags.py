@@ -1,4 +1,5 @@
 # coding=utf-8
+import re
 from itertools import chain
 
 from django import template
@@ -7,6 +8,7 @@ from django.conf import settings
 from django.contrib import admin
 from django.contrib.auth.models import User
 from django.contrib.contenttypes.models import ContentType
+from django.urls import reverse
 from django.utils.translation import gettext as _, gettext_lazy
 
 register = template.Library()
@@ -176,16 +178,10 @@ def title_icon_admin():
     return context
 
 @register.simple_tag()
-def url_account(user_id):
-    pass
-    '''
-        Desabilitar a função de trazer custom urls de minha conta
-    '''
-    # SID_ACCOUNT_NAME_URL = ''
-    # try:
-    #     _namespace_url = settings.SID_ACCOUNT_NAME_URL
-    # except:
-    # _namespace_url = 'admin:auth_user_change'
-    #
-    # url_ = reverse(_namespace_url, user_id)
-    # return url_
+def url_account():
+    try:
+        _namespace_url = 'admin:' + re.sub('\.', '_', settings.AUTH_USER_MODEL.lower()) + '_change'
+    except:
+        _namespace_url = 'admin:auth_user_change'
+
+    return _namespace_url

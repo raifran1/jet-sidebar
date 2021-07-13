@@ -6,3 +6,8 @@ __pycache__
 *.egg*
 /dist
 /build
+*.sqlite3
+db.sqlite3
+public
+dist/jet-sidebar-0.0.1.tar.gz
+dist/jet_sidebar-0.0.1-py3-none-any.whl
