@@ -3,13 +3,13 @@ import os
 from setuptools import setup, find_packages
 
 
-with open("README.md", "r", encoding="utf-8") as fh:
+with open("README.rst", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 
 setup(
     name="jet-sidebar",
-    version="0.2.0",
+    version="0.2.1",
     author="Raifran Lucas",
     author_email="contato@raifranlucas.dev",
     description="Este pacote é uma modificação para o Django Jet",
