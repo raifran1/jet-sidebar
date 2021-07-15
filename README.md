@@ -29,7 +29,6 @@ o django jet antes de prosseguir
 
 * **Instale a ultima versão do jet-sidebar**
 
-`No seu Terminal(shell) - SSH:`
 ```
 pip install jet-sidebar
 ```

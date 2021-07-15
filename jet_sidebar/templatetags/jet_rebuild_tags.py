@@ -198,7 +198,7 @@ def links(user):
                 if 'name' in link.keys() and 'url' in link.keys():
                     links.append(link)
                 else:
-                    print(f'Parâmetro {error} não encontrado, verifique o settings')
+                    print('Parâmetro ', error, ' não encontrado, verifique o settings')
     except:
         links = False
 
