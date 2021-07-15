@@ -134,6 +134,6 @@ STATIC_ROOT = 'public/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'auth.User'
 
-HIGHLIGHT_LINKS = [
-    # {'name': 'Destaque', 'url': '/admin', 'class_icon': 'fas fa-pager', 'style': 'font-size: 14px; padding-right: 6px; padding-left: 2px;', 'perms': ['sessions.view_session']},
-]
+# HIGHLIGHT_LINKS = [
+#     {'name': 'Destaque', 'url': '/admin', 'class_icon': 'fas fa-pager', 'style': 'font-size: 14px; padding-right: 6px; padding-left: 2px;', 'perms': ['sessions.view_session']},
+# ]

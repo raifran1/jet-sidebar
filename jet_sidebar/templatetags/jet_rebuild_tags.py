@@ -189,7 +189,6 @@ def links(user):
     try:
         links_list = settings.HIGHLIGHT_LINKS
         links = []
-        print('s')
         for link in links_list:
             try:
                 if link['name'] and link['url']:
