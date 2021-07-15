@@ -132,4 +132,8 @@ STATIC_ROOT = 'public/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-TESTE = 'auth.User'
+AUTH_USER_MODEL = 'auth.User'
+
+HIGHLIGHT_LINKS = [
+    # {'name': 'Destaque', 'url': '/admin', 'class_icon': 'fas fa-pager', 'style': 'font-size: 14px; padding-right: 6px; padding-left: 2px;', 'perms': ['sessions.view_session']},
+]

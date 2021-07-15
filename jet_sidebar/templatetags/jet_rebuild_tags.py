@@ -13,39 +13,36 @@ from django.utils.translation import gettext as _, gettext_lazy
 
 register = template.Library()
 
-# @register.filter()
-# def check_permission(user, permissions):
-#     """
-#     This function run the check permissions the authenticated user for list menu options
-#     """
-#
-#     if user.is_superuser:
-#         has_perm = True
-#     else:
-#         user_groups = []
-#
-#         if type(permissions) != list:
-#             permissions = permissions.split(', ')
-#
-#         groups_user = user.groups.all()
-#         for group in groups_user:
-#             user_perms = list(group.permissions.values_list('codename', flat=True).all())
-#             for perm in user_perms:
-#                 user_groups.append(perm)
-#         user_perms = list(user.user_permissions.values_list('codename', flat=True).all())
-#
-#         user_all_perms = list(sorted(chain(user_perms, user_groups)))
-#         if permissions:
-#             for perms in permissions:
-#                 if str(perms) in user_all_perms:
-#                     has_perm = True
-#                     break
-#                 else:
-#                     has_perm = False
-#         else:
-#             has_perm = False
-#
-#     return has_perm
+@register.filter()
+def check_permission(user, permissions):
+    """
+    This function run the check permissions the authenticated user for list menu options
+    user: object user instance
+    permissions: list of permissions to verify
+    return: True if user then permission or False if not
+    """
+
+    if user.is_superuser:
+        return True
+    else:
+        # user_codnames = []
+        # groups_user = user.groups.all()
+        # for group in groups_user:
+        #     user_perms = list(group.permissions.values_list('codename', flat=True).all())
+        #     for perm in user_perms:
+        #         user_codnames.append(perm)
+        #
+        # user_perms = list(user.user_permissions.values_list('codename', flat=True).all())
+        # user_all_perms = list(sorted(chain(user_perms, user_codnames)))
+
+        for perms in permissions:
+            if str(perms) in user.get_all_permissions():
+                has_perm = True
+                break
+            else:
+                has_perm = False
+
+    return has_perm
 
 @register.simple_tag()
 def profile_id(request):
@@ -185,3 +182,25 @@ def url_account():
         _namespace_url = 'admin:auth_user_change'
 
     return _namespace_url
+
+
+@register.simple_tag()
+def links(user):
+    try:
+        links_list = settings.HIGHLIGHT_LINKS
+        links = []
+        print('s')
+        for link in links_list:
+            try:
+                if link['name'] and link['url']:
+                    if link['perms'] and check_permission(user, link['perms']):
+                        links.append(link)
+            except Exception as error:
+                if 'name' in link.keys() and 'url' in link.keys():
+                    links.append(link)
+                else:
+                    print(f'Parâmetro {error} não encontrado, verifique o settings')
+    except:
+        links = False
+
+    return links

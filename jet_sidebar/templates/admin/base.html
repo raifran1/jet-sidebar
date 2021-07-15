@@ -195,6 +195,15 @@
                             <span class="sidebar-link-text">{% trans 'View site' %}</span>
                         </a>
                       {% endif %}
+                      {% links request.user as primary_links %}
+                      {% if primary_links %}
+                        {% for link in primary_links %}
+                            <a href="{{ link.url }}" class="sidebar-link icon sidebar-link-label" title="{{ link.name }}">
+                              <i class="{{ link.class_icon }}" style="{{ link.style }}"></i>
+                              <span class="sidebar-link-text">{{ link.name }}</span>
+                            </a>
+                        {% endfor %}
+                      {% endif %}
                       {% url 'django-admindocs-docroot' as docsroot %}
                       {% if docsroot %}
                         <a href="{{ docsroot }}" class="sidebar-link icon">

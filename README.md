@@ -188,3 +188,29 @@ igual o atributo 'name', que está em apps.py.
         class_icon = 'fas fa-users'
 
 ***
+
+* **Configuração dos links em destaque**
+
+* ###### Sobre
+```
+- Agora você tem como adicionar links em destaque, basta setar os links no settings no formato abaixo.
+O formato será uma lista de dicts nomeados com cada parâmetro para o link.
+- name (obrigatório): recebe uma string, nome do link
+- url (obrigatório): recebe uma string, endereço do link
+- class_icon (opcional): recebe uma string, classe do awesome icon
+- style (opcional): recebe uma string, custom style for icon
+- perms (opcional): recebe uma lista, lista de permissões atribuidos a visualização do link,
+caso não queira atribuir permissões ocultar este parâmetro
+
+```
+
+* ###### Código
+
+[comment]: <> (.. code:: python)
+
+    HIGHLIGHT_LINKS = [
+        {'name': '', 'url': '', 'class_icon': '', 'style': '', 'perms': []},
+    ]
+
+***
+
