@@ -59,7 +59,6 @@ def profile_id(request):
 
 @register.inclusion_tag('admin/_menu_sidebar.html')
 def menu_sidbar(user, app):
-    print(app)
     """
     New version the admin menu, more scalable and automatized.
     The output of this function generates in the template just a conditional to set the application icon
@@ -88,9 +87,11 @@ def menu_sidbar(user, app):
     # if check_permission(user, permissions):
     #     app_menu = app
 
+    for item in app['models']:
+        if not item['url']:
+            item['url'] = reverse('admin:{}_{}_changelist'.format(app['app_label'], item['name']))
+
     for a in app['items']:
-        if not a['url']:
-            a['url'] = reverse('admin:{}_{}_changelist'.format(app['app_label'], a['name']))
         if a['has_perms']:
             app_menu = app
             break
