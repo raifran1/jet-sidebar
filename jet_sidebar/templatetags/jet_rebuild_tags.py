@@ -1,5 +1,6 @@
 # coding=utf-8
 import re
+from collections import OrderedDict
 from itertools import chain
 
 from django import template
@@ -10,6 +11,7 @@ from django.contrib.auth.models import User
 from django.contrib.contenttypes.models import ContentType
 from django.urls import reverse
 from django.utils.translation import gettext as _, gettext_lazy
+from jet.utils import get_menu_item_url
 
 register = template.Library()
 
@@ -34,7 +36,6 @@ def check_permission(user, permissions):
         #
         # user_perms = list(user.user_permissions.values_list('codename', flat=True).all())
         # user_all_perms = list(sorted(chain(user_perms, user_codnames)))
-
         for perms in permissions:
             if str(perms) in user.get_all_permissions():
                 has_perm = True
@@ -58,6 +59,7 @@ def profile_id(request):
 
 @register.inclusion_tag('admin/_menu_sidebar.html')
 def menu_sidbar(user, app):
+    print(app)
     """
     New version the admin menu, more scalable and automatized.
     The output of this function generates in the template just a conditional to set the application icon
@@ -87,6 +89,8 @@ def menu_sidbar(user, app):
     #     app_menu = app
 
     for a in app['items']:
+        if not a['url']:
+            a['url'] = reverse('admin:{}_{}_changelist'.format(app['app_label'], a['name']))
         if a['has_perms']:
             app_menu = app
             break
